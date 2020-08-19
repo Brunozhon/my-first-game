@@ -6,15 +6,37 @@
   <body>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
     <script>
-      var app = angular.module("myApplication", []);
-      app.controller("myControllerLoadData", function() {
-        $scope.firstName = "Johnny";
-        $scope.lastName = "Appleseed";
+      var app = angular.module("myGameApp", []);
+      app.controller("myShopCtrlData", function() {
+        $scope.products = ["Apples", "Bananas", "Mangoes"]
+        $scope.addItem = function() {
+          $scope.products.push($scope.items)
+        }
+        $scope.removeItem = function() {
+          $scope.products.splice(x, 1)
+        }
       });
     </script>
-    <div ng-app="myApplication" ng-controller="myControllerLoadData">
-      First name: <input ng-model="firstName" /><br />
-      Last name: <input ng-model="lastName" /><br />
+    <div ng-app="myGameApp" ng-controller="myShopCtrlData">
+      <ul>
+        <li ng-repeat="x in products">
+          {{x}} <span style="color: red" ng-click="removeItem()">remove</span>
+        </li>
+      </ul>
+      <select ng-model="items">
+        <option value="Apples">Apples</option>
+        <option value="Bananas">Bananas</option>
+        <option value="Mangos">Mangos</option>
+        <option value="Bread" disabled>Bread</option>
+        <option value="Toast" disabled>Toast</option>
+        <option value="Oranges">Oranges</option>
+        <option value="Ham">Ham</option>
+        <option value="Turkey">Turkey</option>
+        <option value="Sausage">Sausge</option>
+        <option value="Steak" disabled>Steak</option>
+      </select>
+      <br>
+      <button ng-click="addItem()">Add to shopping cart</button>
     </div>
   </body>
 </html>
